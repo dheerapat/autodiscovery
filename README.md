@@ -5,6 +5,40 @@
 
 ## Installation
 
+### pip (command-line tool)
+
+Use **Python 3.10 or newer**. This repository uses 3.10+ syntax (for example `float | None` type hints). **Anaconda `base` is often Python 3.9**, which cannot run the code and, for a long time, could not install `matplotlib` 3.10 at all—use the `autodiscovery` conda env from `environment.yml` (Python 3.11), or a 3.10+ venv, for `pip install -e .`.
+
+From the repository root, install in editable mode so the `autodiscovery` CLI is on your `PATH`. **Use the same interpreter for pip and python** (see below):
+
+```sh
+python -m pip install -e .
+```
+
+Plain `pip install` can invoke a **different** Python than `python` (for example Anaconda 3.9’s `pip` while `python` is 3.13 from the Microsoft Store or `py` launcher paths—common in Git Bash/Cygwin). That produces errors like `requires a different Python: 3.9.20 not in '>=3.10'`. Check with `python -m pip --version` and `python --version`.
+
+Then run exploration with the same flags as before, for example:
+
+```sh
+autodiscovery \
+    --work_dir="work" \
+    --out_dir="outputs" \
+    --dataset_metadata="discoverybench/real/test/nls_ses/metadata_0.json" \
+    --n_experiments=16 \
+    --model="gpt-4o" \
+    --belief_model="gpt-4o"
+```
+
+You can also invoke the package as a module (no `PYTHONPATH` needed after install). The importable package directory is still named `src`:
+
+```sh
+python -m src --help
+```
+
+On Windows, if the `autodiscovery` command is not found, ensure the `Scripts` directory for that Python install is on your `PATH` (pip mentions the exact folder when it installs console scripts).
+
+### conda
+
 Create the environment with:
 
 ```sh
@@ -48,7 +82,7 @@ You can also use your own datasets. To do this, pass in a dataset metadata JSON 
 
 ## Run AutoDiscovery (MCTS-based hypothesis search and verification)
 
-For example, to explore the DiscoveryBench NLS SES dataset, the following command can be used:
+For example, to explore the DiscoveryBench NLS SES dataset, the following command can be used (after `pip install -e .`, use `autodiscovery` instead of `python src/run.py`):
 
 ```sh
 python src/run.py \
