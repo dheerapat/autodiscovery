@@ -1,0 +1,241 @@
+patient_id,age,gender,bmi,race,treatment_arm,disease_duration_yrs,baseline_das28,baseline_haq,baseline_crp,baseline_swollen_joints,baseline_tender_joints,acr20_response_week12,acr50_response_week12,acr70_response_week12,das28_change_week12,haq_change_week12,crp_change_week12,eular_response,adverse_event_any,serious_ae,early_discontinuation,site_id,prior_mtx_use,prior_biologic_use,smoking_status
+PT-0001,50,Female,28.0,White,Placebo,8.5,6.38,1.75,18.6,22,18,0,0,0,-0.39,-0.05,-0.6,None,0,0,0,S001,No,Yes,Current
+PT-0002,70,Male,27.2,White,DrugX_Low,2.7,7.32,1.27,18.8,15,24,0,0,0,-0.41,-0.48,-5.6,None,1,0,0,S010,No,No,Never
+PT-0003,47,Male,32.0,White,DrugX_High,7.6,3.54,1.04,23.2,7,17,0,0,0,-0.43,0.0,-7.0,None,0,0,0,S009,Yes,No,Former
+PT-0004,34,Male,24.4,Asian,Placebo,7.9,6.16,1.01,7.3,5,12,0,0,0,0.31,0.25,0.7,None,0,0,0,S008,Yes,Yes,Never
+PT-0005,64,Female,25.6,White,DrugX_Low,6.8,6.41,1.49,2.6,22,17,0,0,0,-0.68,-0.1,-2.4,Moderate,0,0,0,S002,Yes,No,Former
+PT-0006,54,Female,16,Asian,DrugX_High,4.6,3.25,2.16,9.8,12,25,1,1,0,-1.08,-0.03,-6.4,Moderate,0,0,0,S011,Yes,No,Current
+PT-0007,41,Male,22.7,White,Placebo,13.5,7.17,2.61,36.0,14,20,0,0,0,0.42,-0.08,-1.9,None,0,0,0,S002,No,Yes,Current
+PT-0008,62,Male,33.7,White,DrugX_Low,11.1,4.34,2.51,8.9,21,11,0,0,0,-0.38,-0.32,0.8,None,0,0,1,S001,Yes,No,Former
+PT-0009,53,Male,33.2,Black or African American,DrugX_High,8.7,3.34,1.26,16.4,20,12,1,1,0,-1.03,-0.19,-3.6,Moderate,1,0,0,S007,Yes,No,Never
+PT-0010,29,Male,21.0,White,Placebo,0.5,4.93,1.28,19.9,10,22,0,0,0,-0.53,-0.35,-0.6,None,1,0,0,S002,Yes,No,Current
+PT-0011,77,Male,28.9,Asian,DrugX_Low,8.8,5.29,0.99,10.1,16,6,0,0,0,-0.57,0.17,-6.8,None,0,0,0,S012,Yes,Yes,Former
+PT-0012,56,Male,24.4,White,DrugX_High,19.6,5.53,2.22,27.4,20,21,1,0,0,-0.44,-0.06,-4.3,None,0,0,0,S010,Yes,Yes,Current
+PT-0013,37,Female,24.3,Black or African American,Placebo,3.0,4.32,2.04,11.5,14,12,0,0,0,-0.41,0.07,-2.0,None,0,0,0,S002,Yes,No,Former
+PT-0014,47,Female,32.7,White,DrugX_Low,10.4,4.25,1.16,3.4,13,24,0,0,0,-0.32,-0.03,-4.3,None,0,0,0,S012,Yes,Yes,Never
+PT-0015,50,Female,37.1,White,DrugX_High,4.4,5.3,2.58,9.2,5,7,1,1,1,-0.39,-0.13,-9.1,None,0,0,0,S012,No,No,Never
+PT-0016,59,Male,33.0,White,Placebo,1.3,3.75,1.21,29.4,5,16,0,0,0,-0.72,-0.17,1.1,Moderate,0,0,0,S004,No,Yes,Never
+PT-0017,75,Female,27.4,White,DrugX_Low,6.6,7.2,2.35,6.0,11,13,1,0,0,-0.33,-0.17,-2.4,None,1,0,0,S001,Yes,Yes,Never
+PT-0018,39,Female,23.3,Other,DrugX_High,15.8,4.4,1.98,1,21,15,0,0,0,0.03,0.05,2.2,None,1,0,0,S012,No,Yes,Current
+PT-0019,18,Male,35.7,White,Placebo,3.6,6.25,0.5,11.5,21,26,0,0,0,-0.48,-0.17,-4.3,None,0,0,0,S007,Yes,Yes,Former
+PT-0020,75,Female,25.3,Black or African American,DrugX_Low,5.9,4.83,2.22,21.0,16,22,1,0,0,-0.05,-0.2,-5.4,None,0,0,0,S012,Yes,Yes,Former
+PT-0021,65,Female,32.7,White,DrugX_High,10.5,4.53,2.36,12.8,8,5,1,0,0,-0.25,-0.05,-6.1,None,0,0,0,S011,Yes,Yes,Former
+PT-0022,46,Male,29.7,Black or African American,Placebo,3.5,6.19,1.57,1,7,19,0,0,0,-0.61,0.15,-2.3,Moderate,0,0,0,S012,No,Yes,Never
+PT-0023,27,Female,34.8,Asian,DrugX_Low,6.8,4.31,1.07,3.7,12,21,1,1,1,-0.55,0.04,-5.3,None,1,0,0,S002,Yes,No,Never
+PT-0024,50,Female,23.0,White,DrugX_High,5.6,5.01,2.58,1.7,22,17,1,0,0,-0.94,0.11,-10.7,Moderate,0,0,0,S010,No,No,Current
+PT-0025,42,Female,29.4,White,Placebo,3.1,4.94,0.88,27.9,18,9,0,0,0,-0.38,-0.1,-7.4,None,1,0,0,S008,Yes,Yes,Never
+PT-0026,63,Female,26.4,White,DrugX_Low,19.1,6.79,1.58,15.0,15,12,0,0,0,-0.64,-0.08,-11.1,Moderate,1,1,0,S003,Yes,Yes,Never
+PT-0027,76,Female,38.6,Black or African American,DrugX_High,7.3,5.81,2.22,9.0,7,10,1,1,0,-0.23,-0.16,-5.0,None,0,0,0,S005,No,No,Current
+PT-0028,47,Male,31.2,White,Placebo,0.8,5.49,2.02,28.1,4,18,0,0,0,-0.05,-0.24,-6.2,None,0,0,0,S011,Yes,No,Current
+PT-0029,58,Female,22.0,White,DrugX_Low,10.1,4.59,1.06,3.1,6,13,1,0,0,-0.58,-0.07,-2.6,None,1,0,0,S010,Yes,No,Former
+PT-0030,45,Female,22.2,White,DrugX_High,4.9,4.24,1.43,8.0,19,25,1,1,0,-0.73,-0.11,-0.3,Moderate,1,0,0,S012,Yes,No,Former
+PT-0031,43,Female,34.3,White,Placebo,9.4,3.71,1.73,19.5,9,11,0,0,0,-0.87,-0.19,-8.9,Moderate,0,0,0,S005,Yes,Yes,Never
+PT-0032,31,Male,26.5,White,DrugX_Low,20.4,6.2,0.79,22.9,4,23,1,1,1,-0.85,0.07,-5.0,Moderate,0,0,1,S011,Yes,No,Former
+PT-0033,66,Female,37.9,White,DrugX_High,7.1,4.99,1.87,27.8,11,21,1,0,0,-0.28,-0.12,-7.7,None,0,0,0,S004,Yes,No,Former
+PT-0034,40,Male,31.0,White,Placebo,9.6,3.21,1.54,8.1,11,14,0,0,0,-0.48,-0.18,-8.3,None,0,0,0,S004,Yes,No,Never
+PT-0035,34,Female,26.6,Black or African American,DrugX_Low,9.7,4.52,2.22,17.6,22,14,0,0,0,-0.81,-0.43,-7.3,Moderate,1,0,0,S006,Yes,No,Current
+PT-0036,52,Male,41.9,Asian,DrugX_High,13.9,5.67,2.69,29.9,12,23,1,1,0,-0.62,-0.21,5.3,Moderate,0,0,0,S008,Yes,Yes,Never
+PT-0037,42,Male,36.7,White,Placebo,5.6,7.26,2.37,7.3,21,6,0,0,0,0.22,0.12,1.7,None,1,0,0,S001,Yes,No,Current
+PT-0038,34,Female,23.9,White,DrugX_Low,2.9,3.42,1.11,20.6,19,8,0,0,0,-0.27,-0.09,-2.0,None,0,0,0,S002,Yes,Yes,Never
+PT-0039,70,Female,36.6,Other,DrugX_High,5.0,4.99,1.61,30.1,19,12,1,0,0,-1.44,-0.13,-3.2,Moderate,0,0,0,S009,Yes,No,Never
+PT-0040,44,Male,28.0,White,Placebo,11.1,7.5,1.63,22.4,15,15,0,0,0,0.1,0.04,2.3,None,0,0,0,S001,Yes,No,Former
+PT-0041,24,Female,31.2,White,DrugX_Low,2.2,7.42,1.64,1,5,9,0,0,0,-0.96,-0.02,-8.4,Moderate,0,0,0,S008,No,No,Never
+PT-0042,58,Female,24.1,White,DrugX_High,13.5,6.86,2.46,21.2,14,25,1,1,0,-0.93,0.34,-9.7,Moderate,0,0,0,S011,Yes,No,Never
+PT-0043,58,Female,31.1,Asian,Placebo,15.5,4.46,1.36,20.1,8,12,0,0,0,-0.22,0.0,0.9,None,1,0,0,S008,Yes,No,Never
+PT-0044,39,Female,29.0,Black or African American,DrugX_Low,7.7,7.08,2.06,20.9,15,23,1,1,0,-0.15,-0.05,-0.9,None,0,0,0,S010,Yes,No,Never
+PT-0045,51,Female,27.8,White,DrugX_High,0.5,6.4,0.61,8.9,19,14,1,0,0,-1.06,-0.27,-5.5,Moderate,0,0,0,S011,Yes,Yes,Never
+PT-0046,33,Female,34.6,White,Placebo,8.0,7.11,1.25,9.2,21,16,1,0,0,-0.16,-0.32,-1.4,None,0,0,0,S002,Yes,No,Never
+PT-0047,77,Female,26.5,Other,DrugX_Low,8.6,6.6,0.53,6.0,21,8,0,0,0,-0.54,0.05,-5.6,None,0,0,0,S009,Yes,No,Former
+PT-0048,42,Male,23.9,White,DrugX_High,1.3,6.21,1.99,17.3,5,14,1,0,0,-0.55,-0.23,-2.9,None,0,0,0,S010,Yes,No,Current
+PT-0049,60,Male,34.1,Asian,Placebo,0.5,4.4,2.09,1,10,19,0,0,0,0.2,0.08,-10.0,None,0,0,0,S002,No,No,Never
+PT-0050,42,Female,32.5,White,DrugX_Low,8.9,7.38,0.62,1,22,11,1,0,0,0.53,-0.05,-5.8,None,0,0,0,S005,No,Yes,Never
+PT-0051,56,Female,31.5,Black or African American,DrugX_High,14.7,3.77,1.32,27.8,11,23,1,1,0,-0.52,-0.08,-7.4,None,0,0,0,S010,Yes,No,Current
+PT-0052,56,Female,16,White,Placebo,10.4,5.26,1.42,10.5,18,7,1,1,0,-0.73,-0.25,-4.4,Moderate,0,0,0,S009,Yes,Yes,Former
+PT-0053,68,Male,34.4,White,DrugX_Low,10.9,6.76,1.42,8.3,7,15,1,0,0,-0.68,-0.25,-2.7,Moderate,0,0,0,S003,Yes,No,Former
+PT-0054,55,Female,26.0,Asian,DrugX_High,2.5,7.25,1.47,17.8,13,24,1,1,0,-0.69,-0.1,-3.3,Moderate,0,0,0,S010,Yes,No,Former
+PT-0055,37,Male,32.3,White,Placebo,2.8,3.32,1.13,2.1,13,15,0,0,0,-0.67,-0.11,0.7,Moderate,1,0,0,S007,Yes,No,Current
+PT-0056,66,Male,22.4,Black or African American,DrugX_Low,12.8,5.64,0.7,20.5,5,26,0,0,0,-0.43,-0.25,-3.5,None,1,0,1,S007,Yes,Yes,Former
+PT-0057,44,Female,21.8,White,DrugX_High,1.6,3.23,1.19,23.3,10,9,1,1,0,-0.29,0.02,-4.3,None,0,0,0,S012,Yes,No,Former
+PT-0058,68,Male,26.7,White,Placebo,7.5,5.05,1.43,9.7,16,5,0,0,0,-0.55,-0.27,-0.9,None,0,0,0,S007,Yes,No,Current
+PT-0059,39,Female,28.1,Black or African American,DrugX_Low,8.5,3.53,1.96,32.1,20,21,1,0,0,-0.2,-0.34,-3.6,None,1,0,0,S011,Yes,Yes,Never
+PT-0060,59,Female,21.5,White,DrugX_High,8.4,6.13,2.53,1,14,25,1,1,1,-1.55,-0.12,-3.7,Moderate,0,0,0,S001,Yes,No,Current
+PT-0061,48,Male,37.4,White,Placebo,1.4,5.58,2.32,14.5,5,19,0,0,0,-0.21,-0.01,3.1,None,1,0,0,S003,Yes,Yes,Former
+PT-0062,69,Female,36.3,White,DrugX_Low,6.7,4.76,2.61,1.9,5,25,1,0,0,-0.05,-0.14,1.0,None,0,0,0,S006,Yes,No,Current
+PT-0063,37,Female,17.5,Other,DrugX_High,5.4,5.76,2.66,5.5,13,22,1,1,0,0.67,-0.28,-3.6,None,0,0,1,S005,Yes,No,Never
+PT-0064,49,Male,23.4,White,Placebo,14.1,7.5,0.86,10.0,20,22,0,0,0,0.38,-0.2,-4.7,None,1,0,0,S010,No,Yes,Never
+PT-0065,59,Female,34.6,White,DrugX_Low,4.5,5.83,2.23,1,18,12,0,0,0,-1.25,-0.04,-8.7,Moderate,0,0,0,S007,Yes,Yes,Former
+PT-0066,75,Female,39.8,Black or African American,DrugX_High,5.1,3.8,1.08,2.1,21,8,0,0,0,-1.25,-0.16,1.7,Good,1,0,0,S004,No,Yes,Former
+PT-0067,74,Female,19.8,White,Placebo,3.3,7.48,1.36,14.9,4,15,0,0,0,-0.24,-0.13,-3.3,None,0,0,0,S008,Yes,Yes,Never
+PT-0068,76,Male,33.2,White,DrugX_Low,7.4,7.24,1.9,1,11,14,0,0,0,-0.18,-0.05,-6.9,None,1,0,0,S001,Yes,Yes,Current
+PT-0069,34,Female,24.7,White,DrugX_High,4.2,4.99,2.03,10.1,6,21,1,1,0,-1.01,-0.17,-8.9,Moderate,0,0,1,S002,Yes,No,Current
+PT-0070,55,Male,30.3,White,Placebo,0.5,3.39,1.76,17.4,18,20,0,0,0,-0.53,-0.02,-5.3,None,1,0,0,S001,Yes,Yes,Never
+PT-0071,47,Female,34.6,White,DrugX_Low,7.1,4.73,2.3,8.5,14,13,1,1,0,-0.15,-0.13,-2.0,None,1,0,0,S002,Yes,Yes,Never
+PT-0072,70,Male,16,White,DrugX_High,13.9,4.46,0.74,11.1,18,24,1,1,0,-0.33,0.06,-6.9,None,0,0,0,S001,Yes,No,Current
+PT-0073,44,Male,24.7,Other,Placebo,11.3,6.56,0.58,25.7,6,12,0,0,0,-0.07,-0.03,-4.7,None,0,0,0,S006,Yes,No,Former
+PT-0074,56,Female,29.0,Black or African American,DrugX_Low,9.5,5.35,1.39,7.8,12,19,1,0,0,-0.63,-0.17,-3.7,Moderate,0,0,0,S008,No,Yes,Never
+PT-0075,65,Female,16,Black or African American,DrugX_High,5.4,4.45,1.19,2.8,9,25,1,1,1,-0.18,0.09,-1.0,None,1,0,0,S010,No,Yes,Never
+PT-0076,55,Male,20.4,Black or African American,Placebo,25.4,5.46,2.27,16.7,14,25,0,0,0,-0.44,-0.22,3.1,None,0,0,0,S003,Yes,Yes,Former
+PT-0077,56,Male,27.9,White,DrugX_Low,6.0,7.22,1.02,20.6,20,14,0,0,0,-0.7,-0.12,-5.0,Moderate,0,0,0,S003,Yes,Yes,Former
+PT-0078,67,Female,33.2,Black or African American,DrugX_High,1.6,3.32,0.6,6.7,10,23,1,0,0,-1.03,-0.32,-6.0,Moderate,1,0,0,S007,Yes,No,Never
+PT-0079,56,Female,29.9,White,Placebo,2.6,3.82,2.48,17.0,14,16,0,0,0,-0.62,-0.1,-4.3,Moderate,1,0,0,S007,No,No,Current
+PT-0080,54,Female,29.1,White,DrugX_Low,17.0,4.61,1.83,8.5,19,21,1,1,0,0.12,-0.48,-4.0,None,1,0,1,S008,Yes,No,Former
+PT-0081,63,Female,21.5,White,DrugX_High,10.0,6.99,2.17,6.3,16,16,1,1,0,-0.21,-0.04,-4.5,None,0,0,0,S002,Yes,Yes,Former
+PT-0082,42,Female,23.6,White,Placebo,5.3,5.79,1.42,17.7,14,20,0,0,0,-0.27,0.17,3.3,None,1,0,0,S005,Yes,No,Current
+PT-0083,36,Female,28.7,Black or African American,DrugX_Low,4.2,4.78,2.05,32.5,17,23,0,0,0,-0.54,-0.12,-11.5,None,0,0,0,S012,Yes,No,Never
+PT-0084,57,Female,33.0,White,DrugX_High,13.2,6.82,0.84,13.9,7,11,1,1,1,-0.72,-0.32,-4.8,Moderate,0,0,0,S012,Yes,Yes,Former
+PT-0085,55,Female,34.1,White,Placebo,5.8,7.12,1.29,20.7,15,26,1,1,0,-0.13,0.35,-2.7,None,1,0,0,S006,Yes,No,Never
+PT-0086,62,Female,27.2,White,DrugX_Low,13.3,7.05,1.41,5.3,8,14,0,0,0,0.06,-0.18,-1.1,None,1,0,0,S009,Yes,Yes,Former
+PT-0087,42,Male,27.2,White,DrugX_High,3.8,6.08,1.72,11.1,11,6,0,0,0,-0.07,0.04,-1.0,None,0,0,0,S008,Yes,Yes,Former
+PT-0088,53,Male,29.2,White,Placebo,2.9,3.45,2.27,10.8,5,10,0,0,0,-0.54,0.4,-7.0,None,0,0,0,S005,No,No,Never
+PT-0089,69,Male,29.5,Asian,DrugX_Low,4.2,5.96,1.71,24.5,8,21,0,0,0,-0.82,0.12,-6.6,Moderate,1,0,0,S011,No,No,Former
+PT-0090,35,Male,22.4,White,DrugX_High,2.4,5.04,1.25,11.4,8,20,1,1,0,-0.53,-0.13,-2.1,None,0,0,0,S006,Yes,No,Never
+PT-0091,58,Female,30.1,White,Placebo,2.6,7.02,2.27,1,7,25,1,0,0,-0.73,-0.03,0.9,Moderate,0,0,0,S011,No,No,Former
+PT-0092,51,Male,25.6,Black or African American,DrugX_Low,0.9,5.46,1.71,1,7,6,1,1,0,0.17,-0.02,-2.4,None,0,0,0,S001,Yes,Yes,Never
+PT-0093,38,Male,28.4,White,DrugX_High,5.0,3.29,1.09,7.4,4,11,1,1,0,-0.49,-0.14,-4.1,None,0,0,0,S012,Yes,Yes,Current
+PT-0094,51,Female,20.1,White,Placebo,14.5,7.14,1.37,37.6,21,9,0,0,0,0.2,-0.11,-1.0,None,0,0,0,S005,Yes,No,Current
+PT-0095,49,Female,22.8,Black or African American,DrugX_Low,7.1,4.39,2.66,24.2,7,6,0,0,0,-0.28,-0.16,-0.1,None,0,0,0,S004,Yes,No,Never
+PT-0096,59,Female,22.1,Black or African American,DrugX_High,9.3,6.54,0.82,22.3,22,15,1,0,0,-0.64,-0.27,-5.2,Moderate,1,0,0,S012,No,No,Former
+PT-0097,42,Female,24.5,White,Placebo,3.0,4.84,1.71,26.9,17,18,0,0,0,-0.59,-0.08,-1.1,None,1,0,1,S007,No,Yes,Former
+PT-0098,77,Male,25.5,White,DrugX_Low,9.5,3.54,1.53,6.5,10,6,0,0,0,-0.15,-0.04,-3.5,None,0,0,0,S004,Yes,No,Former
+PT-0099,60,Male,25.1,White,DrugX_High,10.0,6.41,2.23,30.3,11,24,1,1,1,-1.2,-0.07,-5.8,Moderate,0,0,0,S012,Yes,Yes,Former
+PT-0100,63,Female,34.0,White,Placebo,4.5,5.62,1.01,19.7,22,23,1,1,0,-0.05,-0.04,1.8,None,0,0,0,S008,No,No,Former
+PT-0101,42,Male,23.6,Black or African American,DrugX_Low,5.4,5.55,0.92,19.4,21,25,0,0,0,0.15,0.03,-3.4,None,1,0,1,S003,Yes,Yes,Never
+PT-0102,52,Female,23.2,Black or African American,DrugX_High,12.0,5.85,1.61,13.9,21,18,0,0,0,-0.63,-0.24,-5.3,Moderate,0,0,0,S003,Yes,Yes,Current
+PT-0103,58,Male,30.9,White,Placebo,6.9,6.62,0.68,24.4,16,19,0,0,0,-0.61,-0.32,-5.4,Moderate,0,0,0,S009,Yes,Yes,Never
+PT-0104,31,Male,28.3,Asian,DrugX_Low,5.0,5.97,1.26,41.7,20,6,0,0,0,-0.66,0.04,-6.0,Moderate,1,0,0,S009,Yes,Yes,Former
+PT-0105,80,Female,31.8,White,DrugX_High,7.7,6.73,2.39,20.4,6,14,1,0,0,-0.85,-0.28,-8.4,Moderate,0,0,1,S012,No,Yes,Never
+PT-0106,66,Male,32.6,White,Placebo,9.1,5.8,1.91,1,14,5,0,0,0,-0.89,-0.02,1.8,Moderate,0,0,0,S007,Yes,No,Never
+PT-0107,35,Male,21.7,White,DrugX_Low,11.5,5.93,2.2,28.0,14,16,0,0,0,-1.15,-0.01,-2.7,Moderate,0,0,0,S002,Yes,Yes,Current
+PT-0108,55,Female,21.4,Black or African American,DrugX_High,4.7,6.91,0.53,1,21,12,1,1,1,-0.27,-0.06,-3.3,None,1,0,0,S006,Yes,Yes,Never
+PT-0109,52,Male,37.4,White,Placebo,7.4,4.9,2.44,15.9,16,15,0,0,0,0.4,-0.36,-0.3,None,0,0,0,S007,No,No,Former
+PT-0110,61,Female,28.2,Other,DrugX_Low,0.5,6.56,1.25,11.7,15,8,1,0,0,0.18,-0.44,-6.0,None,0,0,0,S005,No,Yes,Never
+PT-0111,75,Female,33.9,Black or African American,DrugX_High,9.7,4.29,0.85,21.5,17,17,1,0,0,-1.51,-0.19,-2.6,Good,1,0,0,S009,Yes,Yes,Former
+PT-0112,42,Male,32.5,Black or African American,Placebo,9.4,3.92,1.91,1.7,16,15,0,0,0,-0.52,-0.01,2.9,None,0,0,0,S006,Yes,No,Current
+PT-0113,54,Male,21.1,White,DrugX_Low,9.3,4.99,2.71,15.7,7,9,1,1,0,-0.93,-0.07,-4.6,Moderate,1,0,1,S006,Yes,No,Former
+PT-0114,41,Male,37.9,White,DrugX_High,3.5,5.57,1.26,5.0,16,25,0,0,0,-0.42,-0.31,-1.8,None,0,0,0,S001,Yes,Yes,Former
+PT-0115,58,Male,38.6,White,Placebo,8.9,4.77,0.95,3.2,7,13,0,0,0,-0.74,-0.17,-4.4,Moderate,0,0,0,S012,No,No,Never
+PT-0116,46,Male,26.6,White,DrugX_Low,3.2,3.7,1.36,21.3,8,23,1,0,0,-0.2,0.21,-7.1,None,1,0,0,S003,Yes,No,Former
+PT-0117,48,Female,29.6,Other,DrugX_High,3.7,4.85,1.79,15.6,19,18,0,0,0,-0.79,-0.11,0.2,Moderate,1,0,0,S003,No,No,Former
+PT-0118,56,Female,26.2,White,Placebo,6.2,6.53,2.39,2.5,5,19,1,0,0,0.25,-0.05,-4.5,None,0,0,0,S002,Yes,Yes,Never
+PT-0119,74,Male,28.6,White,DrugX_Low,6.4,6.9,1.9,1,17,10,0,0,0,-0.33,-0.28,-7.7,None,1,0,0,S010,Yes,Yes,Never
+PT-0120,48,Male,35.6,White,DrugX_High,13.3,3.45,1.14,6.3,8,12,0,0,0,-1.14,-0.1,-9.2,Moderate,0,0,0,S007,Yes,Yes,Never
+PT-0121,73,Male,33.9,White,Placebo,7.0,6.97,1.55,1,19,15,0,0,0,0.6,0.17,-5.1,None,0,0,0,S007,No,Yes,Never
+PT-0122,37,Female,27.7,White,DrugX_Low,16.3,5.69,1.8,5.9,5,6,0,0,0,-0.47,0.25,-3.0,None,1,0,0,S007,Yes,Yes,Never
+PT-0123,49,Female,26.0,White,DrugX_High,10.6,6.01,1.08,11.7,15,26,1,0,0,-0.62,-0.27,-3.6,Moderate,1,0,0,S009,Yes,Yes,Current
+PT-0124,55,Male,34.5,White,Placebo,7.2,6.9,2.1,7.9,6,8,0,0,0,-0.25,0.12,1.9,None,0,0,0,S003,Yes,Yes,Former
+PT-0125,36,Male,25.8,White,DrugX_Low,5.8,3.85,1.45,1.1,18,11,1,1,0,-0.76,0.04,-3.2,Moderate,0,0,0,S012,Yes,Yes,Never
+PT-0126,43,Male,34.1,White,DrugX_High,1.0,5.43,1.67,14.9,5,12,1,0,0,-0.96,0.17,-2.0,Moderate,1,0,0,S007,No,No,Former
+PT-0127,41,Male,26.6,Black or African American,Placebo,15.2,3.27,0.66,10.2,12,11,0,0,0,-0.56,0.02,-3.2,None,0,0,0,S009,Yes,Yes,Never
+PT-0128,30,Female,31.1,Asian,DrugX_Low,8.0,7.39,0.86,8.8,6,14,0,0,0,-0.04,-0.03,-3.3,None,0,0,0,S005,Yes,No,Never
+PT-0129,48,Male,25.9,Black or African American,DrugX_High,6.1,7.3,1.7,9.3,12,10,0,0,0,-0.73,0.19,-4.7,Moderate,0,0,1,S012,No,No,Current
+PT-0130,49,Male,21.8,White,Placebo,7.1,6.9,0.88,24.5,22,26,0,0,0,0.28,0.24,-0.4,None,1,0,0,S003,Yes,Yes,Former
+PT-0131,55,Female,28.6,White,DrugX_Low,7.1,4.58,2.4,37.2,22,16,0,0,0,-0.2,0.15,3.6,None,1,0,0,S005,Yes,Yes,Never
+PT-0132,48,Female,33.0,White,DrugX_High,7.2,4.51,1.93,2.0,19,11,0,0,0,-0.5,0.07,-4.2,None,0,0,1,S006,Yes,Yes,Current
+PT-0133,38,Female,19.3,White,Placebo,3.4,5.32,0.64,13.6,8,13,0,0,0,-0.07,-0.18,0.6,None,0,0,0,S011,No,Yes,Current
+PT-0134,43,Male,27.2,Black or African American,DrugX_Low,6.0,3.76,1.17,28.5,16,15,1,0,0,-1.24,0.08,0.1,Good,1,0,0,S006,Yes,No,Former
+PT-0135,19,Male,25.5,White,DrugX_High,0.5,3.59,2.36,19.5,13,24,0,0,0,-0.25,0.07,-1.8,None,1,0,0,S003,Yes,Yes,Former
+PT-0136,49,Female,33.7,White,Placebo,2.0,3.61,0.73,16.4,5,12,0,0,0,-0.49,-0.19,-8.5,None,1,0,0,S002,Yes,Yes,Former
+PT-0137,78,Female,34.1,Black or African American,DrugX_Low,15.1,6.68,0.78,25.6,18,6,1,0,0,-0.9,-0.09,-6.3,Moderate,0,0,0,S003,Yes,Yes,Never
+PT-0138,57,Male,24.8,Asian,DrugX_High,2.3,5.26,0.7,7.3,20,12,0,0,0,-0.35,-0.24,-1.8,None,0,0,0,S007,Yes,Yes,Never
+PT-0139,69,Male,30.3,Asian,Placebo,7.3,7.46,1.72,11.6,22,12,0,0,0,-0.37,0.22,-1.1,None,0,0,0,S007,Yes,Yes,Current
+PT-0140,50,Male,32.6,Black or African American,DrugX_Low,13.0,6.2,2.6,30.3,22,23,1,0,0,-0.4,0.04,-6.1,None,1,0,1,S004,Yes,Yes,Never
+PT-0141,67,Female,29.9,Asian,DrugX_High,7.8,6.28,2.61,20.0,14,6,0,0,0,-0.5,-0.06,-7.6,None,1,0,0,S010,Yes,Yes,Current
+PT-0142,50,Female,21.8,Black or African American,Placebo,19.3,5.08,1.97,6.3,21,24,0,0,0,-0.27,0.01,0.3,None,0,0,0,S012,No,No,Former
+PT-0143,20,Male,41.1,White,DrugX_Low,3.2,5.83,1.97,31.5,7,20,1,1,1,-1.17,-0.38,-1.8,Moderate,0,0,1,S004,Yes,Yes,Former
+PT-0144,35,Male,22.8,Black or African American,DrugX_High,14.1,3.41,1.51,9.7,17,20,1,0,0,-0.51,-0.07,-8.6,None,0,0,0,S001,Yes,No,Former
+PT-0145,39,Male,42.4,White,Placebo,9.3,3.52,2.67,11.2,6,15,0,0,0,-0.6,-0.22,-2.9,None,1,0,0,S009,Yes,No,Never
+PT-0146,54,Female,26.3,White,DrugX_Low,3.4,4.89,1.76,11.7,4,18,0,0,0,-0.5,-0.17,-4.9,None,1,0,0,S002,Yes,Yes,Former
+PT-0147,69,Female,36.0,White,DrugX_High,5.8,5.54,0.93,11.3,16,16,1,1,1,-0.64,-0.06,-4.7,Moderate,1,0,0,S010,Yes,Yes,Former
+PT-0148,33,Male,35.0,White,Placebo,0.5,5.5,2.49,1,19,14,0,0,0,-0.16,0.14,-1.2,None,0,0,0,S003,Yes,Yes,Former
+PT-0149,52,Male,25.3,Other,DrugX_Low,7.9,5.02,2.77,10.2,17,11,1,0,0,-0.38,-0.12,-6.1,None,1,0,0,S001,No,Yes,Never
+PT-0150,60,Female,31.6,White,DrugX_High,8.8,5.71,2.72,18.8,7,14,1,0,0,-0.51,-0.27,-6.2,None,1,0,0,S011,Yes,No,Never
+PT-0151,78,Female,32.0,Black or African American,Placebo,12.4,4.35,1.36,18.5,14,14,0,0,0,-0.36,-0.11,-0.9,None,0,0,0,S005,Yes,No,Former
+PT-0152,47,Male,30.6,Black or African American,DrugX_Low,10.2,6.39,2.25,27.5,20,10,0,0,0,-1.06,0.1,0.7,Moderate,0,1,0,S004,No,Yes,Former
+PT-0153,52,Female,35.6,Black or African American,DrugX_High,5.6,5.37,1.96,33.4,7,26,1,1,0,-1.12,-0.09,-7.9,Moderate,1,0,1,S001,Yes,Yes,Former
+PT-0154,73,Male,35.3,White,Placebo,0.5,4.15,1.02,18.9,20,5,0,0,0,0.27,0.08,2.8,None,1,0,0,S012,No,Yes,Former
+PT-0155,43,Female,24.1,Asian,DrugX_Low,3.6,4.5,1.7,16.8,16,23,0,0,0,0.24,-0.15,-7.5,None,1,0,0,S006,No,Yes,Current
+PT-0156,45,Female,32.0,Black or African American,DrugX_High,4.0,7.04,1.19,25.0,5,24,1,0,0,-0.07,-0.41,-13.3,None,1,0,0,S001,Yes,No,Never
+PT-0157,76,Female,28.6,Black or African American,Placebo,8.1,6.58,2.59,27.2,15,21,0,0,0,-0.12,-0.12,-0.7,None,1,0,0,S003,No,No,Never
+PT-0158,56,Female,26.6,White,DrugX_Low,4.1,6.95,1.47,22.3,22,14,1,0,0,-0.76,-0.4,-7.4,Moderate,1,0,0,S011,Yes,No,Never
+PT-0159,51,Male,30.9,White,DrugX_High,8.6,5.65,2.59,24.8,18,9,1,1,1,-0.28,-0.13,-1.7,None,1,0,0,S003,Yes,No,Never
+PT-0160,57,Male,33.4,White,Placebo,10.9,5.04,1.6,27.3,15,5,0,0,0,-0.28,-0.04,-2.0,None,0,0,0,S005,Yes,No,Never
+PT-0161,39,Male,34.3,White,DrugX_Low,18.7,5.16,1.7,21.9,20,15,0,0,0,-0.98,0.18,-5.0,Moderate,0,0,0,S004,Yes,No,Never
+PT-0162,58,Male,29.3,White,DrugX_High,8.0,3.73,2.14,17.5,12,22,1,1,0,-1.0,-0.04,-4.3,Moderate,0,0,0,S012,Yes,Yes,Never
+PT-0163,46,Female,21.0,White,Placebo,11.9,5.88,2.11,22.2,17,8,0,0,0,-0.85,-0.05,-1.0,Moderate,0,0,0,S003,Yes,Yes,Former
+PT-0164,28,Female,36.7,White,DrugX_Low,2.9,4.21,0.53,19.1,22,26,1,1,0,-0.4,0.0,-2.4,None,1,0,0,S008,Yes,No,Current
+PT-0165,62,Female,17.7,White,DrugX_High,4.7,3.7,2.46,5.6,5,5,1,1,0,-1.22,-0.33,-0.2,Good,1,0,0,S005,No,Yes,Never
+PT-0166,65,Female,31.7,Black or African American,Placebo,0.5,3.69,2.1,37.3,9,8,0,0,0,0.05,-0.2,-3.4,None,0,0,0,S011,No,No,Never
+PT-0167,48,Female,16.5,Asian,DrugX_Low,10.9,3.4,1.1,21.7,14,5,0,0,0,-0.77,0.06,-4.2,Moderate,0,0,0,S011,Yes,Yes,Never
+PT-0168,46,Male,33.1,Other,DrugX_High,1.6,3.43,1.98,25.7,19,10,1,1,1,0.02,-0.31,-4.9,None,1,0,1,S008,No,Yes,Never
+PT-0169,28,Female,32.8,White,Placebo,15.2,3.28,1.43,13.0,5,22,0,0,0,0.26,-0.1,1.0,None,0,0,0,S001,No,Yes,Never
+PT-0170,41,Female,24.0,White,DrugX_Low,14.4,6.28,1.34,10.7,11,5,1,0,0,-0.46,-0.23,-4.6,None,1,0,0,S012,Yes,No,Former
+PT-0171,44,Male,31.5,White,DrugX_High,11.5,5.17,2.3,10.8,14,8,1,0,0,-0.02,0.11,-8.6,None,0,0,1,S012,Yes,No,Current
+PT-0172,57,Female,32.6,White,Placebo,2.1,7.16,0.91,1,8,8,0,0,0,-0.6,-0.19,3.6,None,0,0,0,S004,Yes,No,Never
+PT-0173,80,Female,25.4,Black or African American,DrugX_Low,11.4,7.01,1.68,25.4,21,15,0,0,0,-0.6,0.04,-7.7,None,0,0,0,S012,Yes,Yes,Former
+PT-0174,20,Male,29.5,White,DrugX_High,0.6,7.25,2.13,5.3,21,14,1,1,1,-1.38,-0.16,-6.5,Moderate,0,0,0,S005,Yes,No,Never
+PT-0175,73,Male,33.0,Black or African American,Placebo,16.0,3.64,2.5,18.7,21,12,0,0,0,-0.2,-0.17,-5.5,None,0,0,0,S006,No,No,Former
+PT-0176,26,Male,33.6,White,DrugX_Low,7.3,6.56,2.5,25.6,15,23,0,0,0,-1.28,-0.12,-1.9,Moderate,0,0,0,S009,Yes,Yes,Never
+PT-0177,62,Female,30.2,White,DrugX_High,3.7,4.62,2.13,11.1,8,6,1,0,0,-1.17,-0.32,-6.4,Moderate,0,0,0,S009,Yes,Yes,Never
+PT-0178,74,Male,18.5,White,Placebo,5.9,5.54,1.43,2.9,14,15,0,0,0,0.37,-0.18,-4.3,None,0,0,0,S002,Yes,No,Former
+PT-0179,25,Male,33.4,Other,DrugX_Low,5.2,7.14,2.67,7.0,16,13,0,0,0,-0.44,-0.27,-7.2,None,1,0,0,S002,No,No,Current
+PT-0180,51,Male,39.2,White,DrugX_High,5.5,5.9,0.98,10.2,17,8,0,0,0,-0.82,0.14,-5.5,Moderate,0,0,0,S003,Yes,Yes,Never
+PT-0181,51,Male,27.4,White,Placebo,8.8,5.67,1.02,2.7,12,18,0,0,0,-0.46,0.09,-1.8,None,0,0,0,S001,Yes,No,Former
+PT-0182,53,Male,24.6,White,DrugX_Low,11.6,6.15,1.9,10.5,16,17,0,0,0,0.39,0.01,-1.5,None,0,0,0,S003,Yes,Yes,Former
+PT-0183,78,Female,18.9,Other,DrugX_High,17.2,3.81,0.6,16.4,22,24,0,0,0,-0.85,0.12,-2.5,Moderate,0,0,0,S003,Yes,No,Never
+PT-0184,45,Female,30.3,Black or African American,Placebo,10.0,6.86,2.46,44.3,18,25,1,1,0,-0.83,-0.18,-1.8,Moderate,1,0,1,S010,Yes,Yes,Former
+PT-0185,57,Female,35.5,White,DrugX_Low,4.7,5.63,1.34,27.4,14,18,1,1,0,-1.21,0.02,-0.5,Moderate,0,0,0,S005,Yes,Yes,Current
+PT-0186,68,Male,32.7,Asian,DrugX_High,13.1,6.89,0.82,7.4,6,7,1,0,0,-0.7,-0.34,-7.2,Moderate,1,1,0,S009,Yes,Yes,Never
+PT-0187,54,Male,23.3,Asian,Placebo,0.5,3.78,1.65,4.5,6,17,0,0,0,0.12,-0.27,-3.4,None,0,0,0,S010,Yes,No,Never
+PT-0188,47,Male,28.4,White,DrugX_Low,1.3,4.14,1.62,23.9,5,26,0,0,0,-0.36,-0.35,0.6,None,0,0,0,S002,Yes,Yes,Never
+PT-0189,28,Female,27.5,White,DrugX_High,2.6,4.83,1.85,10.9,6,21,0,0,0,-1.0,-0.13,-2.4,Moderate,0,0,0,S003,Yes,No,Former
+PT-0190,41,Male,36.6,White,Placebo,10.3,4.0,1.33,14.0,11,18,0,0,0,-0.49,-0.15,-1.7,None,1,0,1,S001,Yes,No,Never
+PT-0191,46,Male,27.2,Asian,DrugX_Low,8.8,7.17,1.69,19.8,16,24,0,0,0,-0.09,-0.42,-2.9,None,0,0,0,S007,Yes,Yes,Never
+PT-0192,69,Male,23.9,White,DrugX_High,2.8,6.15,2.62,11.9,16,17,1,0,0,-0.72,-0.27,-4.8,Moderate,1,0,0,S010,Yes,Yes,Current
+PT-0193,64,Male,23.9,White,Placebo,1.2,5.52,0.5,1,17,21,1,0,0,-0.21,0.22,-1.3,None,0,0,0,S012,Yes,No,Former
+PT-0194,40,Female,33.6,White,DrugX_Low,11.2,6.89,1.15,22.3,10,5,1,1,0,-0.79,-0.14,-6.2,Moderate,1,0,0,S005,Yes,Yes,Never
+PT-0195,36,Female,27.3,Other,DrugX_High,4.3,5.57,1.78,19.1,9,16,1,1,0,-0.7,-0.41,-7.4,Moderate,0,0,0,S004,Yes,No,Former
+PT-0196,34,Female,31.6,Black or African American,Placebo,0.5,3.42,1.39,3.1,8,20,0,0,0,-0.84,-0.19,1.0,Moderate,0,0,0,S011,Yes,No,Current
+PT-0197,48,Male,21.1,White,DrugX_Low,3.9,6.02,2.35,17.5,13,11,1,0,0,-0.96,-0.24,-6.5,Moderate,0,0,0,S007,Yes,Yes,Never
+PT-0198,67,Female,25.7,White,DrugX_High,8.9,6.23,2.61,1,21,23,1,1,0,-0.83,-0.26,-3.9,Moderate,1,0,0,S009,Yes,No,Former
+PT-0199,43,Female,43.0,Asian,Placebo,9.5,6.19,2.72,2.9,22,20,0,0,0,-0.72,-0.01,-2.6,Moderate,1,0,0,S004,Yes,Yes,Never
+PT-0200,50,Male,30.9,White,DrugX_Low,2.1,5.5,2.11,14.3,16,26,0,0,0,-0.18,-0.23,-3.3,None,0,0,0,S011,No,No,Current
+PT-0201,60,Male,38.1,Black or African American,DrugX_High,9.4,4.07,1.07,10.1,15,9,1,0,0,-0.67,-0.12,-0.0,Moderate,0,0,0,S010,No,Yes,Current
+PT-0202,26,Female,33.2,White,Placebo,14.8,4.91,2.23,23.5,17,20,0,0,0,0.06,-0.09,-3.7,None,0,0,0,S012,Yes,Yes,Never
+PT-0203,46,Male,23.8,White,DrugX_Low,4.1,5.56,1.05,10.0,19,24,1,1,0,-1.06,0.12,-4.1,Moderate,1,0,0,S002,Yes,No,Former
+PT-0204,60,Male,17.9,White,DrugX_High,3.6,6.64,2.2,13.6,17,20,0,0,0,-0.62,-0.35,-5.3,Moderate,0,0,0,S010,Yes,Yes,Never
+PT-0205,58,Male,31.1,Black or African American,Placebo,0.5,5.13,1.27,17.1,15,16,0,0,0,-0.65,0.13,-5.1,Moderate,0,0,0,S005,Yes,No,Former
+PT-0206,42,Female,30.0,White,DrugX_Low,1.6,5.84,1.57,34.4,14,18,1,1,1,-0.72,-0.14,-1.5,Moderate,1,0,0,S008,No,No,Never
+PT-0207,72,Female,25.3,White,DrugX_High,7.4,6.33,2.02,17.0,6,11,1,0,0,-0.76,-0.11,-4.3,Moderate,0,0,0,S002,Yes,Yes,Former
+PT-0208,36,Female,27.4,White,Placebo,10.5,5.89,0.8,16.3,15,15,0,0,0,-0.38,0.12,-3.5,None,1,0,0,S010,Yes,No,Former
+PT-0209,39,Female,22.7,White,DrugX_Low,4.2,4.69,1.74,8.4,6,19,1,1,1,-0.2,-0.36,-5.6,None,1,0,0,S008,Yes,No,Former
+PT-0210,64,Female,31.4,Black or African American,DrugX_High,0.6,5.56,0.93,22.9,11,10,1,1,0,-0.92,-0.38,-5.3,Moderate,0,0,0,S011,Yes,No,Never
+PT-0211,57,Male,23.2,White,Placebo,5.2,5.86,1.13,28.8,19,11,1,0,0,-0.23,0.01,-2.6,None,0,0,0,S008,Yes,No,Current
+PT-0212,72,Female,24.9,Other,DrugX_Low,15.3,5.19,2.32,5.7,8,6,1,1,1,0.16,0.06,-8.4,None,0,0,0,S004,Yes,No,Never
+PT-0213,62,Male,28.3,White,DrugX_High,6.8,6.06,0.98,10.6,16,26,1,0,0,-0.64,-0.31,-2.3,Moderate,1,0,1,S011,Yes,No,Never
+PT-0214,62,Male,29.6,White,Placebo,12.3,6.62,1.84,9.1,5,23,1,0,0,-0.12,-0.05,1.5,None,0,0,0,S011,Yes,No,Never
+PT-0215,47,Male,31.7,White,DrugX_Low,8.5,6.59,2.24,43.1,18,11,1,1,0,-0.93,-0.08,-5.0,Moderate,1,0,0,S012,Yes,Yes,Never
+PT-0216,71,Male,32.2,White,DrugX_High,8.2,4.33,1.34,29.3,16,10,1,0,0,-0.62,-0.14,-3.8,Moderate,0,0,0,S011,Yes,Yes,Never
+PT-0217,35,Female,26.4,White,Placebo,6.0,6.03,0.6,19.0,8,10,0,0,0,0.12,0.06,0.3,None,0,0,0,S006,Yes,Yes,Former
+PT-0218,36,Male,42.5,Black or African American,DrugX_Low,7.9,7.19,2.41,1,15,22,0,0,0,-0.38,0.1,-2.3,None,0,0,0,S002,No,No,Never
+PT-0219,58,Male,28.3,White,DrugX_High,9.3,4.27,1.94,26.3,9,22,0,0,0,-1.16,-0.22,-5.7,Moderate,1,0,0,S009,Yes,No,Never
+PT-0220,39,Male,21.1,Other,Placebo,5.6,7.08,1.77,34.3,17,25,0,0,0,-0.32,-0.04,1.8,None,0,0,0,S006,No,No,Never
+PT-0221,40,Male,31.0,Other,DrugX_Low,2.0,7.47,1.19,8.2,13,12,1,0,0,-0.63,-0.2,-7.4,Moderate,0,0,1,S006,Yes,Yes,Never
+PT-0222,47,Female,23.7,White,DrugX_High,11.9,6.69,0.71,1,6,15,1,0,0,-0.1,-0.41,-7.8,None,0,0,0,S010,Yes,No,Current
+PT-0223,58,Female,16,White,Placebo,9.1,6.93,2.5,5.5,11,25,0,0,0,0.16,0.01,-3.6,None,1,0,0,S011,Yes,Yes,Never
+PT-0224,67,Female,38.9,White,DrugX_Low,5.5,3.59,1.49,16.3,14,7,1,1,1,-0.72,-0.35,-3.8,Moderate,1,0,0,S008,Yes,No,Never
+PT-0225,37,Male,25.7,White,DrugX_High,6.5,6.14,1.82,25.5,7,26,1,1,0,-0.29,-0.1,-0.6,None,0,0,0,S001,No,No,Former
+PT-0226,51,Male,30.8,Black or African American,Placebo,11.6,6.87,0.76,38.0,8,14,0,0,0,0.03,-0.11,1.2,None,1,0,0,S009,Yes,Yes,Former
+PT-0227,51,Male,35.9,Black or African American,DrugX_Low,4.6,7.1,1.71,6.5,12,10,0,0,0,-0.6,-0.13,-4.0,None,0,0,0,S011,Yes,Yes,Former
+PT-0228,51,Male,41.0,White,DrugX_High,8.2,4.19,1.38,19.5,14,20,0,0,0,-0.65,-0.45,-3.0,Moderate,1,0,0,S006,Yes,Yes,Former
+PT-0229,52,Female,27.8,White,Placebo,1.6,7.41,1.13,46.4,5,25,0,0,0,-0.26,-0.08,-4.3,None,1,0,0,S002,Yes,No,Never
+PT-0230,48,Male,22.2,White,DrugX_Low,10.2,4.54,1.89,10.0,8,23,1,0,0,-0.44,-0.17,-4.0,None,0,0,0,S010,No,Yes,Never
+PT-0231,45,Male,36.0,White,DrugX_High,8.5,3.33,1.23,10.3,17,18,0,0,0,0.11,-0.33,-5.5,None,1,0,0,S010,Yes,No,Former
+PT-0232,74,Male,25.4,White,Placebo,4.9,3.54,2.29,27.9,19,25,0,0,0,0.28,-0.14,-1.7,None,1,0,0,S005,No,No,Former
+PT-0233,55,Male,37.8,Black or African American,DrugX_Low,17.5,7.44,2.49,24.2,19,15,1,0,0,-1.08,-0.27,-4.3,Moderate,0,0,0,S011,No,No,Never
+PT-0234,39,Male,22.5,Black or African American,DrugX_High,6.3,3.38,2.79,5.0,5,22,1,1,1,-0.68,-0.22,-3.2,Moderate,0,0,0,S010,No,No,Never
+PT-0235,42,Female,16.9,Black or African American,Placebo,0.5,3.69,2.29,19.8,21,9,0,0,0,-0.07,0.13,-2.5,None,0,0,0,S012,No,No,Former
+PT-0236,44,Male,36.9,White,DrugX_Low,11.2,3.57,2.13,11.1,9,17,1,1,0,-1.58,-0.03,-5.1,Good,1,0,1,S005,Yes,No,Current
+PT-0237,54,Male,22.5,White,DrugX_High,9.3,5.88,1.08,20.0,18,20,1,0,0,-0.59,0.08,-7.8,None,1,0,0,S009,Yes,No,Never
+PT-0238,54,Male,32.2,Black or African American,Placebo,7.9,3.36,2.46,5.5,13,15,0,0,0,-0.96,0.05,2.0,Moderate,0,0,0,S009,Yes,Yes,Current
+PT-0239,36,Male,31.2,White,DrugX_Low,5.5,4.83,0.66,24.1,17,22,1,0,0,-0.58,0.09,-8.3,None,0,0,0,S011,Yes,Yes,Former
+PT-0240,49,Male,19.9,Other,DrugX_High,7.8,7.44,1.16,8.2,20,23,1,1,0,-0.85,-0.39,-4.7,Moderate,0,0,0,S004,Yes,No,Never

@@ -1,0 +1,116 @@
+{
+  "datasets": [
+    {
+      "name": "trial_data.csv",
+      "description": "Phase 2 randomized controlled trial of Drug X versus placebo for moderate-to-severe rheumatoid arthritis. Patients were enrolled across 12 sites and followed for 24 weeks. Primary endpoint is ACR20 response at Week 12. Secondary endpoints include DAS28-CRP, HAQ-DI, and safety outcomes.",
+      "columns": {
+        "raw": [
+          {
+            "name": "patient_id",
+            "description": "Unique de-identified patient identifier (e.g., PT-0001)"
+          },
+          {
+            "name": "age",
+            "description": "Age in years at time of enrollment"
+          },
+          {
+            "name": "gender",
+            "description": "Sex assigned at birth (Male or Female)"
+          },
+          {
+            "name": "bmi",
+            "description": "Body mass index calculated as weight(kg)/height(m)^2 at baseline"
+          },
+          {
+            "name": "race",
+            "description": "Self-reported race (White, Black or African American, Asian, Other)"
+          },
+          {
+            "name": "treatment_arm",
+            "description": "Randomized treatment assignment: DrugX_Low (5mg), DrugX_High (10mg), or Placebo"
+          },
+          {
+            "name": "disease_duration_yrs",
+            "description": "Number of years since initial rheumatoid arthritis diagnosis"
+          },
+          {
+            "name": "baseline_das28",
+            "description": "Baseline Disease Activity Score 28 (DAS28-CRP). Range 2.0-9.0. Higher = more active disease. Inclusion criteria required >= 3.2."
+          },
+          {
+            "name": "baseline_haq",
+            "description": "Baseline Health Assessment Questionnaire Disability Index (HAQ-DI). Range 0-3. Higher = greater disability."
+          },
+          {
+            "name": "baseline_crp",
+            "description": "Baseline C-reactive protein level in mg/L. Marker of systemic inflammation. Normal < 5 mg/L."
+          },
+          {
+            "name": "baseline_swollen_joints",
+            "description": "Number of swollen joints (of 28 assessed) at baseline"
+          },
+          {
+            "name": "baseline_tender_joints",
+            "description": "Number of tender joints (of 28 assessed) at baseline"
+          },
+          {
+            "name": "acr20_response_week12",
+            "description": "Binary indicator of ACR20 response at Week 12 (1 = achieved ACR20 response, 0 = did not achieve). ACR20 requires >=20% improvement in both swollen and tender joint counts plus >=20% improvement in 3 of 5 other core set measures."
+          },
+          {
+            "name": "acr50_response_week12",
+            "description": "Binary indicator of ACR50 response at Week 12 (1 = achieved, 0 = not). Requires >=50% improvement on same criteria as ACR20."
+          },
+          {
+            "name": "acr70_response_week12",
+            "description": "Binary indicator of ACR70 response at Week 12 (1 = achieved, 0 = not). Requires >=70% improvement."
+          },
+          {
+            "name": "das28_change_week12",
+            "description": "Change in DAS28-CRP from baseline to Week 12. Negative values indicate improvement. Clinically meaningful improvement is typically a change of > -1.2."
+          },
+          {
+            "name": "haq_change_week12",
+            "description": "Change in HAQ-DI from baseline to Week 12. Negative values indicate improvement in physical function. Minimal clinically important difference is -0.22."
+          },
+          {
+            "name": "crp_change_week12",
+            "description": "Change in CRP (mg/L) from baseline to Week 12. Negative values indicate reduced inflammation."
+          },
+          {
+            "name": "eular_response",
+            "description": "European Alliance of Associations for Rheumatology (EULAR) response category at Week 12 based on DAS28 change and achieved level: 'Good', 'Moderate', or 'None'"
+          },
+          {
+            "name": "adverse_event_any",
+            "description": "Binary indicator of whether patient experienced any adverse event during the study (1 = yes, 0 = no)"
+          },
+          {
+            "name": "serious_ae",
+            "description": "Binary indicator of whether patient experienced a serious adverse event (1 = yes, 0 = no)"
+          },
+          {
+            "name": "early_discontinuation",
+            "description": "Binary indicator of whether patient discontinued the study early for any reason (1 = yes, 0 = no)"
+          },
+          {
+            "name": "site_id",
+            "description": "Clinical trial site identifier (S001 through S012)"
+          },
+          {
+            "name": "prior_mtx_use",
+            "description": "Whether the patient had prior use of methotrexate (Yes or No), the most common first-line DMARD for RA"
+          },
+          {
+            "name": "prior_biologic_use",
+            "description": "Whether the patient had prior use of any biologic DMARD (Yes or No)"
+          },
+          {
+            "name": "smoking_status",
+            "description": "Smoking history category: 'Current', 'Former', or 'Never'"
+          }
+        ]
+      }
+    }
+  ]
+}
