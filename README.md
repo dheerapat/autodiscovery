@@ -26,6 +26,7 @@ LLM_API_KEY=sk-...           # Your API key (required)
 LLM_BASE_URL=...             # Provider URL (defaults to OpenAI)
 LLM_MODEL=gpt-4o             # Model for agents
 BELIEF_MODEL=gpt-4o          # Model for belief elicitation
+EMBEDDING_MODEL=text-embedding-3-large  # Embeddings model for dedup (skip if unsupported)
 ```
 
 **Examples for popular providers:**
@@ -40,6 +41,18 @@ BELIEF_MODEL=gpt-4o          # Model for belief elicitation
 | Ollama (local) | `http://localhost:11434/v1` |
 
 ## Run AutoDiscovery
+
+Once your `.env` is configured, `--model` and `--belief_model` are optional — they default to `LLM_MODEL` and `BELIEF_MODEL` from `.env`.
+
+```bash
+uv run autodiscovery \
+    --work_dir="work" \
+    --out_dir="outputs" \
+    --dataset_metadata="clinical_trial_example/metadata.json" \
+    --n_experiments=16
+```
+
+Override models on the CLI if needed:
 
 ```bash
 uv run autodiscovery \

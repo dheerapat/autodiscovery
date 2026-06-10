@@ -8,7 +8,7 @@ from scipy.cluster.hierarchy import linkage
 from pydantic import BaseModel, Field
 from tqdm import tqdm
 
-from src.config import get_openai_client
+from src.config import get_openai_client, LLM_MODEL, EMBEDDING_MODEL
 from src.utils import query_llm
 
 
@@ -76,41 +76,36 @@ def get_hypotheses(in_nodes_list):
     return node_list
 
 
-def get_embedding(texts, model="text-embedding-3-large", batch_size=128, client=None, n_attempts=1):
+def get_embedding(texts, model=None, batch_size=128, client=None, n_attempts=1):
     """
     Compute embeddings for a list of texts using the OpenAI Embeddings API.
-    Args:
-        texts (list): A list of text strings to be embedded.
-        model (str, optional): The identifier for the embedding model to use.
-        batch_size (int, optional): The number of texts to process in one API call.
-    Returns:
-        numpy.ndarray: An array of embeddings for the input texts.
+    Returns None if embeddings are not available (e.g., provider doesn't support them).
     """
+    if model is None:
+        model = EMBEDDING_MODEL
     if client is None:
         client = get_openai_client()
-    all_embeddings = []
     for attempt in range(n_attempts):
         try:
             all_embeddings = []
-            # Process the texts in batches
             for i in range(0, len(texts), batch_size):
                 batch = texts[i: i + batch_size]
-                # Request embeddings for the current batch from the API
                 response = client.embeddings.create(input=batch, model=model)
                 for item in response.data:
-                    # Convert the embedding to a NumPy array and add it to the list
                     all_embeddings.append(np.array(item.embedding))
-            break  # If successful, exit the loop
+            return np.array(all_embeddings)
         except Exception as e:
             if attempt < n_attempts - 1:
                 print(f"Embeddings: Attempt {attempt + 1} failed: {e}. Retrying...")
             else:
-                raise RuntimeError(f"Failed to get embeddings after {n_attempts} attempts.") from e
-    return np.array(all_embeddings)
+                print(f"Embeddings: Failed after {n_attempts} attempts: {e}")
+                return None
 
 
-def get_llm_merge_decision(hyp1: str, hyp2: str, n_samples: int = 30, threshold: float = 0.7, model: str = "gpt-4o",
+def get_llm_merge_decision(hyp1: str, hyp2: str, n_samples: int = 30, threshold: float = 0.7, model: str = None,
                            temperature: float = 1.0, reasoning_effort: str = "medium"):
+    if model is None:
+        model = LLM_MODEL
     class ResponseFormat(BaseModel):
         is_same: bool = Field(..., description="Whether the two hypotheses are the same or not.")
 
@@ -160,8 +155,11 @@ def dedupe(nodes_or_json_path, n_samples=10, merge_threshold=0.7, seed=42, rep_m
         orig_to_dedup.append(hyp_to_index[hyp])
     n_dedup = len(dedup_struct_hyp)
 
-    # Generate embeddings for deduplicated hypotheses
-    embeds = np.array(get_embedding(dedup_hyp, n_attempts=3))
+    # Generate embeddings for deduplicated hypotheses (skip if provider doesn't support embeddings)
+    embeds = get_embedding(dedup_hyp, n_attempts=2)
+    if embeds is None:
+        print("Embeddings unavailable — skipping deduplication. Set EMBEDDING_MODEL in .env or use a provider with embeddings support.")
+        return nodes_list
 
     # Initialize assignment structures
     clusters = {i: [i] for i in range(n_dedup)}

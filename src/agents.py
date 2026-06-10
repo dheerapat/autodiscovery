@@ -4,11 +4,30 @@ from src.structured_outputs import ExperimentList, ExperimentCode, ExperimentAna
 import os
 import json
 from autogen.coding import LocalCommandLineCodeExecutor
-from typing import List, Dict
+from typing import List, Dict, Tuple
+import copy
 import autogen.agentchat.contrib.capabilities.transforms as transforms
 from autogen.agentchat.contrib.capabilities import transform_messages
 
 from src.config import LLM_API_KEY, LLM_BASE_URL
+
+
+class CodeBlockWrapperTransform(transforms.MessageTransform):
+    """Wraps the programmer's JSON code block in markdown backticks so AutoGen's
+    code executor can find and execute it."""
+
+    def apply_transform(self, messages: List[Dict]) -> List[Dict]:
+        transformed_messages = copy.deepcopy(messages)
+        message = transformed_messages[-1]
+        try:
+            code = json.loads(message["content"]).get("code", "# Failed to parse code from message")
+        except json.JSONDecodeError:
+            code = "# Failed to parse code from message"
+        message["content"] = f"```python\n{code}\n```"
+        return transformed_messages
+
+    def get_logs(self, pre_transform_messages: List[Dict], post_transform_messages: List[Dict]) -> Tuple[str, bool]:
+        return "CodeBlockWrapperTransform", True
 
 
 def get_openai_config(api_key: str | None = None, temperature: float | None = None,
@@ -178,6 +197,9 @@ def install(package):
         code_execution_config={"executor": executor},
         human_input_mode="NEVER",
     )
+    # Wrap programmer code in markdown backticks so the executor finds it
+    code_wrapper = transform_messages.TransformMessages(transforms=[CodeBlockWrapperTransform()])
+    code_wrapper.add_to_agent(code_executor)
 
     user_proxy = UserProxyAgent(
         name="user_proxy",

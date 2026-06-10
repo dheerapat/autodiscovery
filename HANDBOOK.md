@@ -94,6 +94,18 @@ Popular provider URLs:
 
 ### Run on the clinical trial example
 
+With `.env` configured, `--model` and `--belief_model` are optional:
+
+```bash
+uv run autodiscovery \
+    --work_dir="work" \
+    --out_dir="outputs" \
+    --dataset_metadata="clinical_trial_example/metadata.json" \
+    --n_experiments=16
+```
+
+Override models on the CLI when needed:
+
 ```bash
 uv run autodiscovery \
     --work_dir="work" \
@@ -112,9 +124,7 @@ uv run python src/run.py \
     --work_dir="work" \
     --out_dir="outputs" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
-    --n_experiments=8 \
-    --model="gpt-4o" \
-    --belief_model="gpt-4o"
+    --n_experiments=8
 ```
 
 ### Expected runtime & cost
@@ -455,10 +465,12 @@ The conversation is orchestrated by a custom `SpeakerSelector`:
 
 ### Model flags
 
+Model defaults are read from `.env` (`LLM_MODEL`, `BELIEF_MODEL`). Pass `--model` / `--belief_model` on the CLI to override.
+
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--model` | `"o4-mini"` | LLM for all agents (generator, programmer, analyst, reviewer) |
-| `--belief_model` | `"gpt-4o"` | LLM for belief elicitation |
+| `--model` | From `.env` (`LLM_MODEL`) or `"o4-mini"` | LLM for all agents (generator, programmer, analyst, reviewer) |
+| `--belief_model` | From `.env` (`BELIEF_MODEL`) or `"gpt-4o"` | LLM for belief elicitation |
 | `--temperature` | `1.0` | Set to `None` for o-series models |
 | `--belief_temperature` | `1.0` | Set to `None` for o-series models |
 | `--reasoning_effort` | `"medium"` | For o-series models: `low`, `medium`, `high` |
@@ -629,6 +641,18 @@ Any model accessible through an OpenAI-compatible API works. The model name pass
 
 **o-series models:** When using `o4-mini` or similar, set `--temperature=None` and optionally `--reasoning_effort low|medium|high`.
 
+### Provider limitations
+
+Not all providers support every feature. AutoDiscovery handles these gracefully:
+
+| Feature | What happens if unsupported |
+|---------|---------------------------|
+| Batched completions (`n > 1`) | Automatically falls back to individual `n=1` calls with a small delay |
+| Embeddings API | Deduplication skips with a warning; results are still saved |
+| Structured output / JSON mode | Belief elicitation may fail — try a different provider for `BELIEF_MODEL` |
+
+**Tip:** If your provider lacks embeddings, set `--no-dedupe` to skip deduplication entirely and avoid the warning.
+
 ### Reducing costs
 
 | Strategy | Effect |
@@ -640,7 +664,7 @@ Any model accessible through an OpenAI-compatible API works. The model name pass
 | Use `--k_experiments=4` | Less branching |
 | Use `--use_binary_reward=True` | Simpler reward, same surprising signal |
 
-### Quick test run (2–3 minutes, ~$0.50)
+### Quick test run (2–3 minutes)
 
 ```bash
 uv run autodiscovery \
@@ -648,11 +672,10 @@ uv run autodiscovery \
     --out_dir="outputs_test" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
     --n_experiments=2 \
-    --model="gpt-4o-mini" \
-    --belief_model="gpt-4o-mini" \
     --k_experiments=2 \
     --n_belief_samples=5 \
-    --n_warmstart=1
+    --n_warmstart=1 \
+    --no-dedupe
 ```
 
 ### Common errors

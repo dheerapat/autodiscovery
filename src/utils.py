@@ -1,11 +1,12 @@
 import os
 import json
+import time
 from typing import List, Dict
 
 import numpy as np
 import boto3
 from pydantic import ValidationError
-from openai import OpenAI
+from openai import OpenAI, BadRequestError
 
 from src.config import get_openai_client
 
@@ -23,33 +24,45 @@ def query_llm(
         client = get_openai_client()
     is_reasoning_model = any(model.startswith(prefix) for prefix in ["o", "gpt-5"])
 
-    n_samples_batch_size = 8 if is_reasoning_model else n_samples
+    n_batch = 8 if is_reasoning_model else n_samples
     responses = []
-    # Sample exactly n_samples responses
-    for i in range(0, n_samples, n_samples_batch_size):
+    use_single_sample = False  # set to True if provider rejects n > 1
+
+    while len(responses) < n_samples:
+        n_requested = 1 if use_single_sample else min(n_batch, n_samples - len(responses))
         kwargs = {
             "model": model,
             "messages": messages,
-            "n": min(n_samples_batch_size, n_samples - len(responses)),
+            "n": n_requested,
         }
         if not is_reasoning_model and temperature is not None:
             kwargs["temperature"] = temperature
         if is_reasoning_model and reasoning_effort is not None:
             kwargs["reasoning_effort"] = reasoning_effort
-
         if response_format is not None:
             kwargs["response_format"] = response_format
 
         try:
             response = client.chat.completions.parse(**kwargs)
+        except BadRequestError as e:
+            err_msg = str(e)
+            # Fall back to n=1 if the provider doesn't support batched completions
+            if "one response per prompt" in err_msg or "n" in err_msg.lower():
+                use_single_sample = True
+                continue
+            raise
         except ValidationError:
-            # Retry if the response format validation fails
             response = client.chat.completions.parse(**kwargs)
 
         for choice in response.choices:
             if choice.message.content is None:
                 continue
             responses += [json.loads(choice.message.content)]
+
+        # Small delay between single-sample calls to respect rate limits
+        if use_single_sample and len(responses) < n_samples:
+            time.sleep(0.05)
+
     return responses
 
 

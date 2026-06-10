@@ -377,14 +377,22 @@ def run_mcts(
 def main(argv=None):
     parser = ArgParser()
     args = parser.parse_args(argv)
+
+    # Resolve model defaults from .env / config
+    from src.config import LLM_MODEL, BELIEF_MODEL
+    if args.model is None:
+        args.model = LLM_MODEL or "o4-mini"
+    if args.belief_model is None:
+        args.belief_model = BELIEF_MODEL or "gpt-4o"
+
     print("Script arguments:")
     print(args.__dict__, "\n")
 
     # Validate and fix arguments
-    if "o4-mini" in args.model and args.temperature is not None:
+    if args.model is not None and "o4-mini" in args.model and args.temperature is not None:
         print("Warning: Setting temperature for o4-mini is not permitted. Using default None.")
         args.temperature = None
-    if "o4-mini" in args.belief_model and args.belief_temperature is not None:
+    if args.belief_model is not None and "o4-mini" in args.belief_model and args.belief_temperature is not None:
         print("Warning: Setting temperature for o4-mini belief model is not permitted. Using default None.")
         args.belief_temperature = None
 

@@ -102,9 +102,23 @@ The pipeline is orchestrated by a custom AutoGen `SpeakerSelector` that enforces
 
 ## LLM Configuration
 
-All agents share a single LLM configuration specified via CLI (`--model`, `--temperature`) or `.env` (`LLM_MODEL`). The belief elicitation step can use a different model (`--belief_model` / `BELIEF_MODEL`).
+All agents share a single LLM configuration. Model defaults are read from `.env` (`LLM_MODEL`, `BELIEF_MODEL`). Pass `--model` / `--belief_model` on the CLI to override.
 
 For OpenAI-compatible third-party providers, set `LLM_BASE_URL` in `.env`. See [README.md](README.md) for provider examples.
+
+## Provider Compatibility
+
+AutoDiscovery adapts automatically to provider limitations:
+
+| Limitation | Automatic fallback |
+|-----------|-------------------|
+| No batched completions (`n > 1`) | Falls back to individual `n=1` calls |
+| No embeddings API | Deduplication skips gracefully with a warning |
+| No structured output | Belief elicitation may fail — use a different `BELIEF_MODEL` |
+
+## Code Execution
+
+The `code_executor` agent runs code in a subprocess via AutoGen's `LocalCommandLineCodeExecutor`. A `CodeBlockWrapperTransform` wraps the programmer's JSON output in markdown code blocks so the executor can find and execute the code. No image analysis patch is applied — `plt.show()` calls will either display normally (if a desktop is available) or silently no-op.
 
 ## Token Limits
 

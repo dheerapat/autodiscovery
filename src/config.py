@@ -18,6 +18,7 @@ LLM_API_KEY: str = os.getenv("LLM_API_KEY", os.getenv("OPENAI_API_KEY", ""))
 LLM_BASE_URL: str | None = os.getenv("LLM_BASE_URL") or os.getenv("OPENAI_BASE_URL") or None
 LLM_MODEL: str = os.getenv("LLM_MODEL", "gpt-4o")
 BELIEF_MODEL: str = os.getenv("BELIEF_MODEL", "gpt-4o")
+EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-3-large")
 
 
 def get_openai_client(**overrides) -> OpenAI:
