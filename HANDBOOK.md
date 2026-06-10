@@ -37,7 +37,7 @@ AutoDiscovery is an **AI research scientist** that autonomously explores a datas
 | **Bayesian surprise** | Doesn't just check "is this significant?" — measures **how much the evidence changes the LLM's belief** |
 | **Multi-agent LLM pipeline** | Separate AI agents act as: programmer, code executor, analyst, reviewer, reviser, generator |
 | **Open-ended** | Doesn't stop at one answer — it keeps branching deeper into surprising discoveries |
-| **Fully autonomous** | You provide the dataset + API key. It discovers on its own. |
+| **Fully autonomous** | You provide the dataset + `.env` config. It discovers on its own. |
 
 ### What it is NOT
 
@@ -52,24 +52,50 @@ AutoDiscovery is an **AI research scientist** that autonomously explores a datas
 ### Prerequisites
 
 ```bash
-# Python 3.10+
-python --version
-
-# OpenAI API key (must have access to gpt-4o or similar)
-export OPENAI_API_KEY="sk-..."
+# Python 3.13+ and uv (https://docs.astral.sh/uv/)
+python --version  # should show 3.13+
+uv --version
 ```
 
 ### Install
 
 ```bash
 # From the repo root
-python -m pip install -e .
+uv sync
 ```
+
+### Configure your LLM provider
+
+Copy the example env file and edit it:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials. Works with any OpenAI-compatible API:
+
+```env
+LLM_API_KEY=sk-...
+LLM_BASE_URL=https://api.openai.com/v1   # or Groq, Together, DeepSeek, vLLM, Ollama...
+LLM_MODEL=gpt-4o
+BELIEF_MODEL=gpt-4o
+```
+
+Popular provider URLs:
+
+| Provider | `LLM_BASE_URL` |
+|----------|----------------|
+| OpenAI (default) | `https://api.openai.com/v1` |
+| Groq | `https://api.groq.com/openai/v1` |
+| Together AI | `https://api.together.xyz/v1` |
+| DeepSeek | `https://api.deepseek.com/v1` |
+| vLLM (local) | `http://localhost:8000/v1` |
+| Ollama (local) | `http://localhost:11434/v1` |
 
 ### Run on the clinical trial example
 
 ```bash
-autodiscovery \
+uv run autodiscovery \
     --work_dir="work" \
     --out_dir="outputs" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
@@ -81,8 +107,8 @@ autodiscovery \
 Or as a module:
 
 ```bash
-python -m src --help
-python src/run.py \
+uv run python -m src --help
+uv run python src/run.py \
     --work_dir="work" \
     --out_dir="outputs" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
@@ -117,11 +143,14 @@ autodiscovery/
 │   ├── deduplication.py    ← Post-hoc hypothesis deduplication via embeddings + LLM
 │   ├── structured_outputs.py ← Pydantic models for LLM response parsing
 │   ├── utils.py            ← LLM query helper, Gaussian fusion, S3 download
+│   ├── config.py           ← .env-based LLM provider configuration
 │   ├── logger.py           ← Per-node conversation log storage
 │   ├── nodes_to_csv.py     ← Export MCTS nodes to CSV
 │   └── mcts_viz.html       ← Visualization template
 ├── pyproject.toml
-├── environment.yml
+├── uv.lock
+├── .python-version
+├── .env.example
 ├── README.md
 └── clinical_trial_example/ ← Example: clinical trial dataset (CSV + metadata JSON)
 ```
@@ -409,7 +438,6 @@ The conversation is orchestrated by a custom `SpeakerSelector`:
 - Uses **`LocalCommandLineCodeExecutor`** (your machine)
 - Default timeout: 30 minutes (`--code_timeout`)
 - Each code execution is **fresh** — no state preserved between blocks
-- Plots: `plt.show()` is intercepted and sent to `gpt-4o` for automatic image analysis (hardcoded — see §13)
 - The programmer can `pip install` packages as needed
 
 ---
@@ -515,7 +543,7 @@ outputs/20260603-220000/          ← Timestamped directory
 ### From a previous directory
 
 ```bash
-python src/run.py \
+uv run autodiscovery \
     --work_dir="work_new" \
     --out_dir="outputs_new" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
@@ -571,83 +599,41 @@ AutoDiscovery is well-suited for clinical trial data because:
 
 ## 13. Tips & Troubleshooting
 
-### API key issues
+### LLM provider configuration
+
+AutoDiscovery reads LLM settings from `.env` in the project root. If no `.env` file exists, it falls back to standard environment variables (`OPENAI_API_KEY`, `OPENAI_BASE_URL`).
 
 ```bash
-# Verify key is set
-echo $OPENAI_API_KEY
+# Create your config
+cp .env.example .env
+# Edit .env with your provider details
+```
 
-# If using a non-default key
-export OPENAI_API_KEY="sk-..."
+**Verify your config is loaded:**
+
+```bash
+uv run python -c "from src.config import LLM_API_KEY, LLM_BASE_URL; print(f'Key set: {bool(LLM_API_KEY)} | URL: {LLM_BASE_URL}')"
 ```
 
 ### Model compatibility
 
-| Model | Works for agents? | Works for beliefs? | Plot analysis? |
-|-------|-------------------|--------------------|----------------|
-| `gpt-4o` | ✅ | ✅ | ✅ (hardcoded) |
-| `gpt-4o-mini` | ✅ | ✅ | ❌ (no vision) |
-| `o4-mini` | ✅ | ✅ | ❌ (no vision) |
-| Claude / Local | ❌ | ❌ | ❌ |
+Any model accessible through an OpenAI-compatible API works. The model name passed to `--model` / `--belief_model` (or set in `.env`) must be a valid model ID for your provider.
 
-The plot analysis uses a **hardcoded** `OpenAI()` call with `model="gpt-4o"` in `src/agents.py:68`. If you use non-OpenAI models, you'll need to modify this line.
+| Provider | Example `--model` | Notes |
+|----------|-------------------|-------|
+| OpenAI | `gpt-4o`, `gpt-4o-mini`, `o4-mini` | o-series: set `--temperature=None` |
+| Groq | `llama-3.1-70b-versatile`, `mixtral-8x7b` | Fast inference, no vision |
+| Together AI | `meta-llama/Llama-3.1-70B` | Wide model selection |
+| DeepSeek | `deepseek-chat` | Strong reasoning, low cost |
+| Ollama (local) | `llama3.1:8b`, `mistral:7b` | Free, private, slower |
 
-### Disabling plot analysis entirely
-
-If you don't need automatic plot analysis (e.g., your experiments only print text statistics, or you want to avoid the hardcoded `gpt-4o` vision dependency), here's how to disable it cleanly.
-
-**Option 1: Comment out the transform (easiest, 2 lines)**
-
-In `src/agents.py`, find these two lines around line 276:
-
-```python
-    # Apply image analysis patch to the code executor
-    transform_messages_capability = transform_messages.TransformMessages(transforms=[CodeBlockWrapperTransform()])
-    transform_messages_capability.add_to_agent(code_executor)
-```
-
-Replace them with:
-
-```python
-    # Image analysis patch disabled — plots will display normally or be skipped
-    # transform_messages_capability = transform_messages.TransformMessages(transforms=[CodeBlockWrapperTransform()])
-    # transform_messages_capability.add_to_agent(code_executor)
-```
-
-This removes the injected `IMAGE_ANALYSIS_PATCH` entirely. Code that calls `plt.show()` will either:
-- Print nothing (if running headless / no display)
-- Display the plot normally (if a desktop environment is available)
-
-Either way, the experiment continues. The analyst agent simply won't see auto-generated plot descriptions.
-
-**Option 2: Replace the patch with a no-op (more surgical)**
-
-Keep the transform but replace `IMAGE_ANALYSIS_PATCH` with a harmless stub. In `src/agents.py` (around line 24), replace the long patch with:
-
-```python
-IMAGE_ANALYSIS_PATCH = """\\n# Image analysis disabled. Plots will not be captured.
-import matplotlib.pyplot as plt
-"""
-```
-
-This ensures `plt` is still importable (so the programmer's code doesn't break), but no image is sent to any API.
-
-**What you lose:**
-- The `experiment_code_analyst` won't receive LLM-generated descriptions of plots
-- If the programmer's code relies entirely on visual output (e.g., a heatmap with no printed summary), the analyst may report less informative results
-
-**What you gain:**
-- No hardcoded dependency on OpenAI's vision API
-- Works with any LLM backend (including local models or non-OpenAI providers)
-- Slightly lower cost (~$0.01–0.05 per experiment saved)
-- One less API call to fail
-
-For **clinical trial data**, where most insights come from statistical tables and regression output (not plots), this is a safe change. The system will still discover surprising findings just fine.
+**o-series models:** When using `o4-mini` or similar, set `--temperature=None` and optionally `--reasoning_effort low|medium|high`.
 
 ### Reducing costs
 
 | Strategy | Effect |
 |----------|--------|
+| Use a cheaper provider (Groq, DeepSeek) | ~5–20× cheaper than OpenAI |
 | Use `--model="gpt-4o-mini"` | Cheaper agents (~10×) |
 | Use `--n_belief_samples=10` | Fewer LLM calls per node |
 | Use `--belief_model="gpt-4o-mini"` | Cheaper belief computation |
@@ -657,7 +643,7 @@ For **clinical trial data**, where most insights come from statistical tables an
 ### Quick test run (2–3 minutes, ~$0.50)
 
 ```bash
-python src/run.py \
+uv run autodiscovery \
     --work_dir="work_test" \
     --out_dir="outputs_test" \
     --dataset_metadata="clinical_trial_example/metadata.json" \
@@ -673,12 +659,13 @@ python src/run.py \
 
 | Error | Likely cause | Fix |
 |-------|--------------|-----|
-| `requires a different Python: 3.9.20 not in '>=3.10'` | Using Python 3.9 | Use conda env from `environment.yml` or a Python 3.10+ venv |
-| `module 'src' has no attribute 'run'` | PYTHONPATH not set | `export PYTHONPATH=$(pwd):$PYTHONPATH` |
-| `autodiscovery: command not found` | Scripts dir not on PATH | Use `python -m src` instead |
-| `openai.NotFoundError` | Model not available | Check your OpenAI account has access to the model |
+| `Missing credentials` | No API key configured | Create `.env` from `.env.example`, or set `LLM_API_KEY` / `OPENAI_API_KEY` |
+| `module 'src' has no attribute 'run'` | Not installed in venv | Run via `uv run autodiscovery` or `uv run python -m src` |
+| `autodiscovery: command not found` | Outside venv | Use `uv run autodiscovery` instead |
+| `openai.NotFoundError` | Model not available | Check the model name is valid for your provider |
 | Code timeout | Experiment too complex | Increase `--code_timeout` or simplify hypothesis |
 | `Error for node X: ...` | Belief computation failed | Check LLM response format, try different `--belief_mode` |
+| `uv: command not found` | uv not installed | `curl -LsSf https://astral.sh/uv/install.sh | sh` |
 
 ### Getting help
 

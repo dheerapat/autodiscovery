@@ -3,100 +3,114 @@
 
 > Link to our NeurIPS 2025 paper: [AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise](https://openreview.net/pdf?id=kJqTkj2HhF)
 
-## Installation
+## Quick Start
 
-### pip (command-line tool)
+**Prerequisites:** Python 3.13+ and [uv](https://docs.astral.sh/uv/).
 
-Use **Python 3.10 or newer**. This repository uses 3.10+ syntax (for example `float | None` type hints). **Anaconda `base` is often Python 3.9**, which cannot run the code and, for a long time, could not install `matplotlib` 3.10 at all—use the `autodiscovery` conda env from `environment.yml` (Python 3.11), or a 3.10+ venv, for `pip install -e .`.
+```bash
+# Clone & install
+git clone <repo-url> autodiscovery && cd autodiscovery
+uv sync
 
-From the repository root, install in editable mode so the `autodiscovery` CLI is on your `PATH`. **Use the same interpreter for pip and python** (see below):
-
-```sh
-python -m pip install -e .
+# Configure your LLM provider
+cp .env.example .env
+# Edit .env with your API key and provider URL
 ```
 
-Plain `pip install` can invoke a **different** Python than `python` (for example Anaconda 3.9’s `pip` while `python` is 3.13 from the Microsoft Store or `py` launcher paths—common in Git Bash/Cygwin). That produces errors like `requires a different Python: 3.9.20 not in '>=3.10'`. Check with `python -m pip --version` and `python --version`.
+### LLM Provider Configuration
 
-Then run exploration with the same flags as before, for example:
+AutoDiscovery works with any OpenAI-compatible API. Set these in `.env`:
 
-```sh
-autodiscovery \
+```env
+LLM_API_KEY=sk-...           # Your API key (required)
+LLM_BASE_URL=...             # Provider URL (defaults to OpenAI)
+LLM_MODEL=gpt-4o             # Model for agents
+BELIEF_MODEL=gpt-4o          # Model for belief elicitation
+```
+
+**Examples for popular providers:**
+
+| Provider | `LLM_BASE_URL` |
+|----------|----------------|
+| OpenAI (default) | `https://api.openai.com/v1` |
+| Groq | `https://api.groq.com/openai/v1` |
+| Together AI | `https://api.together.xyz/v1` |
+| DeepSeek | `https://api.deepseek.com/v1` |
+| vLLM (local) | `http://localhost:8000/v1` |
+| Ollama (local) | `http://localhost:11434/v1` |
+
+## Run AutoDiscovery
+
+```bash
+uv run autodiscovery \
     --work_dir="work" \
     --out_dir="outputs" \
-    --dataset_metadata="discoverybench/real/test/nls_ses/metadata_0.json" \
+    --dataset_metadata="clinical_trial_example/metadata.json" \
     --n_experiments=16 \
     --model="gpt-4o" \
     --belief_model="gpt-4o"
 ```
 
-You can also invoke the package as a module (no `PYTHONPATH` needed after install). The importable package directory is still named `src`:
+Or as a module:
 
-```sh
-python -m src --help
-```
-
-On Windows, if the `autodiscovery` command is not found, ensure the `Scripts` directory for that Python install is on your `PATH` (pip mentions the exact folder when it installs console scripts).
-
-### conda
-
-Create the environment with:
-
-```sh
-conda env create -f environment.yml
-conda activate autodiscovery
-```
-
-Set environment variables:
-
-```sh
-# (for Linux/MacOS/Bash/Cygwin)
-export PYTHONPATH=$(pwd):$PYTHONPATH;
-
-# (for Windows CMD)
-set PYTHONPATH=%cd%;%PYTHONPATH%
-
-# (if OPENAI_API_KEY is not already set)
-export OPENAI_API_KEY=<key>
+```bash
+uv run python -m src --help
 ```
 
 ## Datasets
 
 ### DiscoveryBench
 
-```sh
+```bash
 git clone https://github.com/allenai/discoverybench.git temp_db
 cp -r temp_db/discoverybench discoverybench
 rm -rf temp_db
 ```
 
-### Blade
+### BLADE
 
-```sh
+```bash
 git clone https://github.com/behavioral-data/BLADE.git temp_db
 cp -r temp_db/blade_bench/datasets blade
 rm -rf temp_db
 ```
 
-### BYO-Datasets!
-You can also use your own datasets. To do this, pass in a dataset metadata JSON file containing descriptions of the paths of datasets (relative to the metadata file) and their column descriptions in natural language. You can have a look at the metadata files in the `DiscoveryBench` directory from above as examples, or see a description of the metadata format from the DiscoveryBench repository [here](https://github.com/allenai/discoverybench/blob/main/discoverybench/README.md).
+### Bring Your Own Dataset
 
-## Run AutoDiscovery (MCTS-based hypothesis search and verification)
+Provide a metadata JSON file describing dataset paths (relative to the metadata file) and column descriptions in natural language. See the [DiscoveryBench README](https://github.com/allenai/discoverybench/blob/main/discoverybench/README.md) for the metadata format, or use `clinical_trial_example/metadata.json` as a template.
 
-For example, to explore the DiscoveryBench NLS SES dataset, the following command can be used (after `pip install -e .`, use `autodiscovery` instead of `python src/run.py`):
+## Development
 
-```sh
-python src/run.py \
-    --work_dir="work" \
-    --out_dir="outputs" \
-    --dataset_metadata="discoverybench/real/test/nls_ses/metadata_0.json" \
-    --n_experiments=16 \
-    --model="gpt-4o" \
-    --belief_model="gpt-4o"
+```bash
+uv run pytest          # Run tests
+uv run ruff check .    # Lint
+uv run mypy src/       # Type check
 ```
 
-To resume a previous exploration, use the `--continue_from_dir` flag to specify the directory containing the previous
-exploration logs. This will allow the script to continue from where it left off, using the MCTS nodes it had generated
-so far.
+## Project Structure
+
+```
+autodiscovery/
+├── src/
+│   ├── run.py              # CLI entry point + MCTS loop
+│   ├── mcts.py             # MCTSNode + selection strategies
+│   ├── agents.py           # Multi-agent LLM pipeline
+│   ├── beliefs.py          # Bayesian belief elicitation (5 modes)
+│   ├── mcts_utils.py       # Tree persistence, query formatting
+│   ├── dataset.py          # Dataset metadata parsing
+│   ├── args.py             # CLI argument definitions
+│   ├── transitions.py      # Agent conversation routing
+│   ├── deduplication.py    # Post-hoc hypothesis deduplication
+│   ├── structured_outputs.py  # Pydantic models for LLM outputs
+│   ├── utils.py            # LLM query helper, Gaussian fusion
+│   ├── config.py           # .env-based LLM config
+│   ├── logger.py           # Per-node conversation logs
+│   └── nodes_to_csv.py     # Export nodes to CSV
+├── pyproject.toml
+├── uv.lock
+├── .python-version
+└── .env.example
+```
 
 ## ✍️ Get in touch!
 

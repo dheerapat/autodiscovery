@@ -8,6 +8,7 @@ from scipy.cluster.hierarchy import linkage
 from pydantic import BaseModel, Field
 from tqdm import tqdm
 
+from src.config import get_openai_client
 from src.utils import query_llm
 
 
@@ -86,7 +87,7 @@ def get_embedding(texts, model="text-embedding-3-large", batch_size=128, client=
         numpy.ndarray: An array of embeddings for the input texts.
     """
     if client is None:
-        client = OpenAI()
+        client = get_openai_client()
     all_embeddings = []
     for attempt in range(n_attempts):
         try:

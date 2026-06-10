@@ -1,30 +1,30 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "autodiscovery"
-version = "0.1.0"
+version = "0.1.5"
 description = "Open-ended scientific discovery via Bayesian surprise (NeurIPS 2025)"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 authors = [
   { name = "Dhruv Agarwal" },
   { name = "Bodhisattwa Prasad Majumder" },
 ]
 dependencies = [
   "streamlit==1.37.1",
-  "pandas",
-  # matplotlib 3.10+ requires Python >=3.10; a range avoids hard failure on 3.10+ pip when 3.10 wheels differ by platform.
+  "pandas>=2.2",
   "matplotlib>=3.7,<4",
-  # 8.19+ requires Python >=3.10; keep a range so older Pythons can still resolve deps if needed.
   "IPython>=8.12,<9",
   "pyautogen[openai]==0.8",
-  "scikit-learn",
-  "scipy",
-  "statsmodels",
-  "h5py",
-  "boto3",
+  "scikit-learn>=1.5",
+  "scipy>=1.14",
+  "statsmodels>=0.14",
+  "h5py>=3.12",
+  "boto3>=1.36",
+  "python-dotenv>=1.0",
+  "tqdm>=4",
 ]
 
 [project.scripts]
@@ -34,9 +34,22 @@ autodiscovery = "src.run:main"
 Homepage = "https://openreview.net/forum?id=kJqTkj2HhF"
 Paper = "https://openreview.net/pdf?id=kJqTkj2HhF"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "ruff>=0.8",
+  "mypy>=1.13",
+]
 
-[tool.setuptools.package-data]
-src = ["*.html"]
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true

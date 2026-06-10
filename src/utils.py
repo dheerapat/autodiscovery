@@ -7,6 +7,8 @@ import boto3
 from pydantic import ValidationError
 from openai import OpenAI
 
+from src.config import get_openai_client
+
 
 def query_llm(
     messages: List[Dict[str, str]],
@@ -18,7 +20,7 @@ def query_llm(
     client: OpenAI = None,
 ):
     if client is None:
-        client = OpenAI()
+        client = get_openai_client()
     is_reasoning_model = any(model.startswith(prefix) for prefix in ["o", "gpt-5"])
 
     n_samples_batch_size = 8 if is_reasoning_model else n_samples

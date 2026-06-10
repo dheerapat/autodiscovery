@@ -4,6 +4,7 @@ annotation_state/
 .cache/
 coding/
 .venv/
+.env
 logs/
 .idea/
 answer_key_real.csv

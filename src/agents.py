@@ -4,107 +4,11 @@ from src.structured_outputs import ExperimentList, ExperimentCode, ExperimentAna
 import os
 import json
 from autogen.coding import LocalCommandLineCodeExecutor
-from typing import Tuple
-
-import copy
 from typing import List, Dict
 import autogen.agentchat.contrib.capabilities.transforms as transforms
 from autogen.agentchat.contrib.capabilities import transform_messages
 
-IMAGE_ANALYSIS_PATCH = """\
-import matplotlib.pyplot as plt
-import functools
-from io import BytesIO
-import base64
-from openai import OpenAI
-
-
-client = OpenAI()
-
-image_analyst_prompt = '''Please analyze the given plot image and provide the following:
-
-1. Plot Type: Identify the type of plot (e.g., heatmap, bar plot, scatter plot) and its purpose.
-2. Axes:
-    * Titles and labels, including units.
-    * Value ranges for both axes.
-3. Data Trends:
-    * For scatter plots: note trends, clusters, or outliers.
-    * For bar plots: highlight the tallest and shortest bars and patterns.
-    * For heatmaps: identify areas of high and low values.
-    etc...
-4. Annotations and Legends: Describe key annotations or legends.
-5. Statistical Insights: Provide insights based on the information presented in the plot.'''
-
-
-def image_to_text():
-    for fig_num in plt.get_fignums():
-        fig = plt.figure(fig_num)  # Get the current figure
-        with BytesIO() as buf:
-            # Save the figure to a PNG buffer
-            fig.savefig(buf, format='png', dpi=200)
-            buf.seek(0)
-            # Encode image to base64
-            base64_image = base64.b64encode(buf.read()).decode('utf-8')
-            messages = [
-                {
-                    'role': 'system',
-                    'content': 'You are a research scientist responsible for analyzing plots and figures from running experiments and providing detailed descriptions.'
-                },
-                {
-                    'role': 'user',
-                    'content': [
-                        {'type': 'text', 'text': image_analyst_prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/png;base64,{base64_image}"
-                            }
-                        }
-                    ]
-                }
-            ]
-            # Get image analysis from the LLM
-            response = client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages,
-                max_tokens=1000,
-            )
-            analysis = response.choices[0].message.content
-            print(f"\\n=== Plot Analysis (fig. {fig_num}) ===\\n")
-            print(analysis)
-            print("\\n" + "="*50)
-
-        plt.close(fig)
-
-
-def patch_matplotlib_show():
-    # Replace plt.show with our custom function
-    plt.show = functools.partial(image_to_text)
-
-
-# Apply the patch
-patch_matplotlib_show()
-"""
-
-
-class CodeBlockWrapperTransform(transforms.MessageTransform):
-
-    def apply_transform(self, messages: List[Dict]) -> List[Dict]:
-        # Deep copy messages to avoid modifying the original
-        transformed_messages = copy.deepcopy(messages)
-        message = transformed_messages[-1]
-
-        try:
-            code = json.loads(message["content"]).get("code", "# Failed to parse code from message")
-        except json.JSONDecodeError:
-            code = "# Failed to parse code from message"
-
-        message["content"] = f"```python\n{IMAGE_ANALYSIS_PATCH}\n\n{code}\n```"
-
-        return transformed_messages
-
-    def get_logs(self, pre_transform_messages: List[Dict], post_transform_messages: List[Dict]) -> Tuple[str, bool]:
-        return "CodeBlockWrapperTransform", True
+from src.config import LLM_API_KEY, LLM_BASE_URL
 
 
 def get_openai_config(api_key: str | None = None, temperature: float | None = None,
@@ -119,6 +23,8 @@ def get_openai_config(api_key: str | None = None, temperature: float | None = No
     }
     if temperature is not None:
         config["temperature"] = temperature
+    if LLM_BASE_URL:
+        config["base_url"] = LLM_BASE_URL
 
     # Make o-series specific changes
     if model_name.startswith("o"):
@@ -132,7 +38,7 @@ def get_openai_config(api_key: str | None = None, temperature: float | None = No
 
 def get_agents(work_dir, model_name="o4-mini", temperature=None, reasoning_effort=None, branching_factor=3,
                user_query=None, experiment_first=False, code_timeout=30 * 60) -> dict[str, ConversableAgent]:
-    llm_config = get_openai_config(api_key=os.getenv("OPENAI_API_KEY"), model_name=model_name, temperature=temperature,
+    llm_config = get_openai_config(api_key=LLM_API_KEY, model_name=model_name, temperature=temperature,
                                    reasoning_effort=reasoning_effort)
 
     # Create token limit transform
@@ -272,9 +178,6 @@ def install(package):
         code_execution_config={"executor": executor},
         human_input_mode="NEVER",
     )
-    # Apply image analysis patch to the code executor
-    transform_messages_capability = transform_messages.TransformMessages(transforms=[CodeBlockWrapperTransform()])
-    transform_messages_capability.add_to_agent(code_executor)
 
     user_proxy = UserProxyAgent(
         name="user_proxy",
